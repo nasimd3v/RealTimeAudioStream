@@ -1,4 +1,4 @@
-# Simple Flask Music Streaming App 
+# Simple Flask Realtime Audio Streaming App 
 
 A simple Flask app for streaming music
 
@@ -35,8 +35,14 @@ python3 app.py
 
 ## Running the tests
 
-Open up your browser and visit
+Open up your browser and visit Stream Page
 ```
 http://localhost:5090
+
+```
+
+Upload Audio file visit 
+```
+http://localhost:5090/admin
 
 ```
