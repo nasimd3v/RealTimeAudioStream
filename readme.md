@@ -28,6 +28,10 @@ Once all packages are downloaded and installed run.
 ```
 python app.py
 ```
+or
+```
+python3 app.py
+```
 
 ## Running the tests
 
