@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <title>AudioStreaming</title>
+</head>
+<style>
+ .centered {
+     position: fixed;
+     top: 50%;
+     pointer-events: none;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     transform: -webkit-translate(-50%, -50%);
+     transform: -moz-translate(-50%, -50%);
+     transform: -ms-translate(-50%, -50%);
+}</style>
+<script src="static/js/main.js"></script>
+<body>
+    <div>
+        {% for entry in entries %}
+        <div>
+            <div>
+                <div>
+                    <div class="centered">
+                        <audio id="player"
+                                preload="auto"
+                                src="http://localhost:{{ entry.port }}/{{ entry.link }}"
+                                controls>
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <p id="startAt" style="display:none">{{entry.startAt}}</p>
+        </div>
+              {% else %}
+        <li>
+            <em>Unbelievable. No entries so far</em>
+            {% endfor %}
+    </div>
+</body>
+
+    <script>
+
+        var log = document.getElementById("startAt").innerText;
+        var toStart = staredAt(log);
+        var player = document.getElementById("player");
+        player.src += toStart;
+        player.oncanplaythrough = play();
+
+        function n(n){
+            return n > 9 ? "" + n: "0" + n;
+        }
+
+        function staredAt(since){
+            current_time =Date.now();
+            ms = current_time - parseInt(since);
+            console.log(current_time)
+            console.log(since)
+            var seconds = n(ms / 1000);
+            var hours = n(parseInt( seconds / 3600 ));
+            seconds = n(seconds % 3600);
+            var minutes = n(parseInt( seconds / 60 ));
+            seconds = n(seconds % 60);
+            return "#t="+hours+":"+minutes+":"+seconds;
+        }
+    </script>
+
+</html>
